@@ -47,7 +47,7 @@ export async function pushSiteFiles({ changed = [], message, siteDir = 'site', c
     git(cwd, ['commit', '-m', message]);
     commitSha = git(cwd, ['rev-parse', 'HEAD']);
   } catch (err) {
-    const out = String(err.stderr || err.message || '');
+    const out = `${err.stdout || ''}${err.stderr || ''}${err.message || ''}`;
     if (out.includes('nothing to commit') || out.includes('nothing added to commit')) {
       commitSha = git(cwd, ['rev-parse', 'HEAD']);
     } else {
@@ -58,7 +58,7 @@ export async function pushSiteFiles({ changed = [], message, siteDir = 'site', c
   try {
     git(cwd, ['push', 'origin', `HEAD:refs/heads/${branch}`]);
   } catch (err) {
-    const out = String(err.stderr || err.message || '');
+    const out = `${err.stdout || ''}${err.stderr || ''}${err.message || ''}`;
     return { pushed: false, reason: `git push failed: ${out.slice(0, 300)}`, commitSha, branch };
   }
 
