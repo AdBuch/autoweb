@@ -1,0 +1,13 @@
+{
+  "name": "autoweb",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-building website: an empty page with a prompt bar at the bottom, driven by an AI agent and committed to this repo.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
